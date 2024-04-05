@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <img id="lampImage" src="lampoff.jpg" alt="Lampe">
+        <button id="toggleButton">Allumer / Éteindre</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var lamp = document.getElementById('lampImage');
+            var toggleButton = document.getElementById('toggleButton');
+            var lampOnImage = 'lampon.jpg';
+            var lampOffImage = 'lampoff.jpg';
+            var lampOnSound = 'clap.mp3';
+            var lampOffSound = 'clap.mp3';
+
+            toggleButton.addEventListener('click', function () {
+                toggleLamp();
+            });
+
+            function toggleLamp() {
+                if (lamp.classList.contains('on')) {
+                    lamp.src = lampOffImage;
+                    playSound(lampOffSound);
+                } else {
+                    lamp.src = lampOnImage;
+                    playSound(lampOnSound);
+                }
+                lamp.classList.toggle('on');
+            }
+
+            function playSound(soundFile) {
+                var audio = new Audio(soundFile);
+                audio.play();
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <button id="Contact">Formulaire de contact</button>
+    <button id="Video">Vidéo de présentation</button>
+    <button id="Photos">Photos</button>
+    <button id="CV">CV</button>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <!-- Formulaire de contact -->
+            <span class="close"></span>
+            <h2>Formulaire de contact</h2>
+            <!-- Ajoutez votre formulaire de contact ici -->
+
+            <form id="contactForm">
+                <label for="name">Nom :</label><br>
+                <input type="text" id="name" name="name" required><br><br>
+
+                <label for="email">Email :</label><br>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="message">Message :</label><br>
+                <textarea id="message" name="message" rows="4" required></textarea><br><br>
+
+                <input type="submit" value="Envoyer">
+            </form>
+
+        </div>
+    </div>
+
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <!-- Vidéo de présentation -->
+
+            <h2>Vidéo de présentation</h2>
+            <iframe width="560" height="315" src="https://youtu.be/Gb-KqESxHKc?si=jPoQUXH0pzhPUWIV" frameborder="0"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div id="photosModal" class="modal">
+        <div class="mamak">
+            <!-- Photos -->
+            <span class="close"></span>
+            <h2>Photos</h2>
+            <!-- Ajoutez vos photos ici -->
+            <img width="450" height="500" src="tt.jpg" alt="photo">
+        </div>
+    </div>
+
+    <div id="cvModal" class="modal">
+        <div class="modal-content">
+            <!-- CV -->
+            <span class="close"></span>
+            <h2>CV</h2>
+            <!-- Ajoutez votre CV ici -->
+            <img width="580" height="400" src="cv.png" alt="CV">
+        </div>
+    </div>
+
+    <script>
+        //javascript de formulaire
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Récupération du formulaire de contact
+            var contactForm = document.getElementById('contactForm');
+
+            // Événement pour soumettre le formulaire de contact
+            contactForm.addEventListener('submit', function (event) {
+                event.preventDefault(); // Empêche le rechargement de la page
+                // Récupération des valeurs du formulaire
+                var name = contactForm.elements['name'].value;
+                var email = contactForm.elements['email'].value;
+                var message = contactForm.elements['message'].value;
+
+
+
+                // Affichage d'un message de confirmation ou de remerciement
+                alert('Votre message a été envoyé avec succès !');
+
+                // Réinitialisation du formulaire après l'envoi
+                contactForm.reset();
+            });
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var Contact = document.getElementById('Contact');
+            var Video = document.getElementById('Video');
+            var Photos = document.getElementById('Photos');
+            var CV = document.getElementById('CV');
+
+            var contactModal = document.getElementById('contactModal');
+            var videoModal = document.getElementById('videoModal');
+            var photosModal = document.getElementById('photosModal');
+            var cvModal = document.getElementById('cvModal');
+
+            var modals = [contactModal, videoModal, photosModal, cvModal];
+
+            // Afficher la modal correspondante au bouton cliqué
+            function showModal(modal) {
+                modal.style.display = 'block';
+            }
+
+            // Fermer toutes les modals
+            function closeModal() {
+                modals.forEach(modal => modal.style.display = 'none');
+            }
+
+            // Événement pour afficher le formulaire de contact
+            Contact.addEventListener('click', function () {
+                closeModal();
+                showModal(contactModal);
+            });
+
+            // Événement pour afficher la vidéo de présentation
+            Video.addEventListener('click', function () {
+                closeModal();
+                showModal(videoModal);
+            });
+
+            // Événement pour afficher les photos
+            Photos.addEventListener('click', function () {
+                closeModal();
+                showModal(photosModal);
+            });
+
+            // Événement pour afficher le CV
+            CV.addEventListener('click', function () {
+                closeModal();
+                showModal(cvModal);
+            });
+
+            // Fermer la modal lorsqu'on clique sur le bouton de fermeture
+            modals.forEach(modal => {
+                var closeButton = modal.querySelector('.close');
+                if (closeButton) {
+                    closeButton.addEventListener('click', function () {
+                        closeModal();
+                    });
+                }
+            });
+
+            // Fermer la modal lorsqu'on clique en dehors de celle-ci
+            window.addEventListener('click', function (event) {
+                modals.forEach(modal => {
+                    if (event.target == modal) {
+                        closeModal();
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>
