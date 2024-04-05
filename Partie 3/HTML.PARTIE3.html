@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Jeu de devinette</h1>
+    <p>Devinez un nombre entre 1 et 100 :</p>
+    <input type="text" id="userGuess">
+    <button id="checkButton">Vérifier</button>
+    <p id="feedback"></p>
+
+    <script>
+        // Génération du nombre aléatoire entre 1 et 100
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+
+        // Récupération des éléments du DOM
+        const userGuessInput = document.getElementById('userGuess');
+        const checkButton = document.getElementById('checkButton');
+        const feedbackElement = document.getElementById('feedback');
+
+        // Ajout d'un écouteur d'événements sur le bouton de vérification
+        checkButton.addEventListener('click', function () {
+            // Récupération de la proposition de l'utilisateur
+            const userGuess = parseInt(userGuessInput.value);
+
+            // Vérification de la validité de la proposition
+            if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+                feedbackElement.textContent = "Veuillez entrer un nombre entre 1 et 100.";
+            } else {
+                // Comparaison avec le nombre aléatoire
+                if (userGuess === randomNumber) {
+                    feedbackElement.textContent = "Bravo ! Vous avez deviné le bon nombre.";
+                } else if (userGuess < randomNumber) {
+                    feedbackElement.textContent = "Le nombre à deviner est plus grand.";
+                } else {
+                    feedbackElement.textContent = "Le nombre à deviner est plus petit.";
+                }
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
